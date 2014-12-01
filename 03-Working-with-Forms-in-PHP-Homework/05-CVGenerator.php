@@ -137,33 +137,36 @@
             $driverLicenses = implode(', ', $driverLicenses);
             
             //Validate user input:
-            $nameLangPattern = array("options"=>array("regexp"=>"/[A-Za-z]{2,20}/"));
-            $companyPattern = array("options"=>array("regexp"=>"/[A-Za-z0-9]{2,20}/"));
-            $phonePattern = array("options"=>array("regexp"=>"/[0-9-\+ ]+/"));
-            $emailPattern = array("options"=>array("regexp"=>"/[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z]+/"));
+            $nameLangPattern = array("options"=>array("regexp"=>"/[^A-Za-z]/"));
+            $companyPattern = array("options"=>array("regexp"=>"/[^A-Za-z0-9]/"));
+            $phonePattern = array("options"=>array("regexp"=>"/[^0-9-\+ ]+/"));
+            //$emailPattern = array("options"=>array("regexp"=>"/[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z]+/"));
             
-            if (!filter_var($fName, FILTER_VALIDATE_REGEXP, $nameLangPattern) ||
-                !filter_var($lName, FILTER_VALIDATE_REGEXP, $nameLangPattern)) {
+            if (filter_var($fName, FILTER_VALIDATE_REGEXP, $nameLangPattern) ||
+                filter_var($lName, FILTER_VALIDATE_REGEXP, $nameLangPattern) ||
+                strlen($fName) < 2 || strlen($fName) > 20 || strlen($lName) < 2 ||
+                strlen($lName > 20)) {
                 die ('First Name and Last Name must contain only letters between 2 and 20 symbols!');
             }
                 
             foreach ($langArray as $key => $value) {
-                if (!filter_var($value, FILTER_VALIDATE_REGEXP, $nameLangPattern)) {
+                if (filter_var($value, FILTER_VALIDATE_REGEXP, $nameLangPattern)) {
                     die ('Language must contain only letters between 2 and 20 symbols!');
                 }
             }
             
-            if (!filter_var($company, FILTER_VALIDATE_REGEXP, $companyPattern)) {
+            if (filter_var($company, FILTER_VALIDATE_REGEXP, $companyPattern) ||
+                strlen($company) < 2 || strlen($company) > 20) {
                 die ('Company Name must contain only letters and numbers between 2 and 20 symbols!');
             }
             
-            if (!filter_var($phone, FILTER_VALIDATE_REGEXP, $phonePattern)) {
+            if (filter_var($phone, FILTER_VALIDATE_REGEXP, $phonePattern)) {
                 die ('Phone Number must contain only numbers, "+", "-" and " "!');
             }
             
-            if (!filter_var($email, FILTER_VALIDATE_REGEXP, $emailPattern)) {
-                die ('Email must contain numbers, letters, only one "@" and only one "."!');
-            }
+            // if (filter_var($email, FILTER_VALIDATE_REGEXP, $emailPattern)) {
+                // die ('Email must contain numbers, letters, only one "@" and only one "."!');
+            // }
             ?>
             
             <table>
