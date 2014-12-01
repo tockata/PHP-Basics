@@ -140,7 +140,7 @@
             $nameLangPattern = array("options"=>array("regexp"=>"/[^A-Za-z]/"));
             $companyPattern = array("options"=>array("regexp"=>"/[^A-Za-z0-9]/"));
             $phonePattern = array("options"=>array("regexp"=>"/[^0-9-\+ ]+/"));
-            //$emailPattern = array("options"=>array("regexp"=>"/[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z]+/"));
+            $emailPattern = array("options"=>array("regexp"=>"/^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z]+$/"));
             
             if (filter_var($fName, FILTER_VALIDATE_REGEXP, $nameLangPattern) ||
                 filter_var($lName, FILTER_VALIDATE_REGEXP, $nameLangPattern) ||
@@ -164,9 +164,9 @@
                 die ('Phone Number must contain only numbers, "+", "-" and " "!');
             }
             
-            // if (filter_var($email, FILTER_VALIDATE_REGEXP, $emailPattern)) {
-                // die ('Email must contain numbers, letters, only one "@" and only one "."!');
-            // }
+            if (!filter_var($email, FILTER_VALIDATE_REGEXP, $emailPattern)) {
+                die ('Email must contain numbers, letters, only one "@" and only one "."!');
+            }
             ?>
             
             <table>
