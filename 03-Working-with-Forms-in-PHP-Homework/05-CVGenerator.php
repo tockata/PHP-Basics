@@ -21,16 +21,16 @@
         <form method="post" action="05-CVGenerator.php">
             <fieldset>
                 <legend>Personal Information</legend>
-                <input type="text" name="fName" placeholder="First Name" /><br />
-                <input type="text" name="lName" placeholder="Last Name" /><br />
-                <input type="email" name="email" placeholder="Email" /><br />
-                <input type="tel" name="phone" placeholder="Phone Number" /><br />
+                <input type="text" name="fName" placeholder="First Name" required="required"/><br />
+                <input type="text" name="lName" placeholder="Last Name" required="required"/><br />
+                <input type="email" name="email" placeholder="Email" required="required"/><br />
+                <input type="tel" name="phone" placeholder="Phone Number" required="required"/><br />
                 <label for="female">Female</label>
                 <input type="radio" name="gender" id="female" value="Female"/>
                 <label for="male">Male</label>
                 <input type="radio" name="gender" id="male" value="Male"/><br />
                 <label for="birthday">Birthday</label><br />
-                <input type="date" name="birthday" id="birthday" /><br />
+                <input type="date" name="birthday" id="birthday" required="required"/><br />
                 <label for="nationality">Nationality</label><br />
                 <select name="nationality">
                     <option value="Bulgarian">Bulgarian</option>
@@ -41,17 +41,17 @@
             <fieldset>
                 <legend>Last Work Position</legend>
                 <label for="company">Company Name</label>
-                <input type="text" name="company" id="company" /><br />
+                <input type="text" name="company" id="company" required="required"/><br />
                 <label for="fromDate">From</label>
-                <input type="date" name="fromDate" id="fromDate" /><br />
+                <input type="date" name="fromDate" id="fromDate" required="required"/><br />
                 <label for="toDate">To</label>
-                <input type="date" name="toDate" id="toDate" /><br />
+                <input type="date" name="toDate" id="toDate" required="required"/><br />
             </fieldset>
             <fieldset id="computerSkills">
                 <legend>Computer Skills</legend>
                 <label for="progLang">Programming Languages</label><br />
                 <div id="progLang">
-                    <input type="text" name="progLang[]" />
+                    <input type="text" name="progLang[]" required="required"/>
                     <select name="progLangLevel[]">
                         <option value="Beginner">Beginner</option>
                         <option value="Programmer">Programmer</option>
@@ -65,7 +65,7 @@
                 <legend>Other Skills</legend>
                 <label for="lang">Languages</label><br />
                 <div id="lang">
-                    <input type="text" name="lang[]" />
+                    <input type="text" name="lang[]" required="required"/>
                     <select name="comprehension[]">
                         <option disabled="disabled" selected="selected">Comprehension</option>
                         <option value="beginner">Beginner</option>
@@ -135,6 +135,35 @@
             }
             
             $driverLicenses = implode(', ', $driverLicenses);
+            
+            //Validate user input:
+            $nameLangPattern = array("options"=>array("regexp"=>"/[A-Za-z]{2,20}/"));
+            $companyPattern = array("options"=>array("regexp"=>"/[A-Za-z0-9]{2,20}/"));
+            $phonePattern = array("options"=>array("regexp"=>"/[0-9-\+ ]+/"));
+            $emailPattern = array("options"=>array("regexp"=>"/[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z]+/"));
+            
+            if (!filter_var($fName, FILTER_VALIDATE_REGEXP, $nameLangPattern) ||
+                !filter_var($lName, FILTER_VALIDATE_REGEXP, $nameLangPattern)) {
+                die ('First Name and Last Name must contain only letters between 2 and 20 symbols!');
+            }
+                
+            foreach ($langArray as $key => $value) {
+                if (!filter_var($value, FILTER_VALIDATE_REGEXP, $nameLangPattern)) {
+                    die ('Language must contain only letters between 2 and 20 symbols!');
+                }
+            }
+            
+            if (!filter_var($company, FILTER_VALIDATE_REGEXP, $companyPattern)) {
+                die ('Company Name must contain only letters and numbers between 2 and 20 symbols!');
+            }
+            
+            if (!filter_var($phone, FILTER_VALIDATE_REGEXP, $phonePattern)) {
+                die ('Phone Number must contain only numbers, "+", "-" and " "!');
+            }
+            
+            if (!filter_var($email, FILTER_VALIDATE_REGEXP, $emailPattern)) {
+                die ('Email must contain numbers, letters, only one "@" and only one "."!');
+            }
             ?>
             
             <table>
