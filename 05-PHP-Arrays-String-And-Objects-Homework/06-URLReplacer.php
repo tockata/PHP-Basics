@@ -18,7 +18,7 @@
             for ($i = 0; $i < count($matches[0]); $i++) {
                 $link = substr($matches[1][$i], 1, strlen($matches[1][$i]) - 2);
                 $textBetweenATag = $matches[2][$i];
-                $replace = "[URL=" . "$link" . "]" . $textBetweenATag. "[/URL]";
+                $replace = "[URL=" . $link . "]" . $textBetweenATag. "[/URL]";
                 $text = str_replace($matches[0][$i], $replace, $text);
             }
             
