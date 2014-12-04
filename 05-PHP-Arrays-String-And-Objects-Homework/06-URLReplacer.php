@@ -13,13 +13,13 @@
         <?php
         if (isset($_POST['text'])) {
             $text = $_POST['text'];
-            $hyperlinks = preg_match_all('/(?i)<a\s*href\s*=\s*([^>]+)>(.+?)<\/a>/', $text, $matches);
+            $aTagsCount = preg_match_all('/(?i)<a\s*href\s*=\s*([^>]+)>(.+?)<\/a>/', $text, $aTags);
             
-            for ($i = 0; $i < count($matches[0]); $i++) {
-                $link = substr($matches[1][$i], 1, strlen($matches[1][$i]) - 2);
-                $textBetweenATag = $matches[2][$i];
-                $replace = "[URL=" . "$link" . "]" . $textBetweenATag. "[/URL]";
-                $text = str_replace($matches[0][$i], $replace, $text);
+            for ($i = 0; $i < count($aTags[0]); $i++) {
+                $url = substr($aTags[1][$i], 1, strlen($aTags[1][$i]) - 2);
+                $textBetweenATag = $aTags[2][$i];
+                $replacement = "[URL=" . $url . "]" . $textBetweenATag. "[/URL]";
+                $text = str_replace($aTags[0][$i], $replacement, $text);
             }
             
             echo htmlentities($text);
