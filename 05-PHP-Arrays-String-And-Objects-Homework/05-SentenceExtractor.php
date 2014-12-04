@@ -14,10 +14,10 @@
         <br>
         <?php
         if (isset($_POST['text'], $_POST['word'])) {
-            $countMatches = preg_match_all('/[^.!?]*[.!?]/', $_POST['text'], $text);
+            $countMatches = preg_match_all('/[^.!?]*[.!?]/', $_POST['text'], $sentences);
             $word =  $_POST['word'];
             
-            foreach ($text[0] as $sentence) {
+            foreach ($sentences[0] as $sentence) {
                 $needle = "/[^\w]" . $word . "[^\w]/";
                 if (preg_match($needle, $sentence) > 0) {
                     $sentence = trim($sentence);
