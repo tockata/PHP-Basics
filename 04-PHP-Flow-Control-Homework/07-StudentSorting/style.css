@@ -1,11 +1,11 @@
 #input, #input thead, #output, #output thead, #output td, #output th {
-    border: 1px solid black;
+    border: 1px solid #000000;
     border-collapse: collapse;
 }
 
 #input thead, #output thead {
-    background-color: cornflowerblue;
-    color: white;
+    background-color: #6495ED;
+    color: #FFFFFF;
     font-weight: bold;
 }
 
@@ -14,11 +14,11 @@
 }
 
 #input tbody tr:nth-child(even), #output tbody tr:nth-child(even) {
-    background-color: gainsboro;
+    background-color: #DCDCDC;
 }
 
 #input tbody tr:nth-child(odd), #output tbody tr:nth-child(odd) {
-    background-color: lightblue;
+    background-color: #ADD8E6;
 }
 
 input {
@@ -26,7 +26,7 @@ input {
 }
 
 #output td {
-    min-width: 138px;
+    min-width: 140px;
     padding: 5px;
 }
 
@@ -35,13 +35,13 @@ input {
 }
 
 #output tfoot {
-    background-color: cornflowerblue;
+    background-color: #6495ED;
     font-weight: bold;
 }
 
 input[type="button"] {
-    background-color: darkblue;
-    color: white;
+    background-color: #00008B;
+    color: #FFFFFF;
     font-size: 1.5rem;
     border-style: solid;
     width: 30px;
