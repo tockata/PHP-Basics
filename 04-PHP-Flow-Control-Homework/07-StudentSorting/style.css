@@ -1,0 +1,36 @@
+#input, #input thead, #output, #output thead, #output td, #output th {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#input thead, #output thead {
+    background-color: cornflowerblue;
+    color: white;
+    font-weight: bold;
+}
+
+#input td {
+    padding: 15px 5px;
+}
+
+#input tbody tr:nth-child(even), #output tbody tr:nth-child(even) {
+    background-color: gainsboro;
+}
+
+#input tbody tr:nth-child(odd), #output tbody tr:nth-child(odd) {
+    background-color: lightblue;
+}
+
+input {
+    height: 25px;
+}
+
+#output td {
+    width: 138px;
+    padding: 5px;
+}
+
+#output tfoot {
+    background-color: cornflowerblue;
+    font-weight: bold;
+}
