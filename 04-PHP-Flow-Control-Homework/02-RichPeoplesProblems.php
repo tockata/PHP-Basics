@@ -27,7 +27,7 @@
             <tbody>
                 <?php
                 for ($i=0; $i < count($cars); $i++):
-                    $randomColor = rand(1, count($colors) - 1);
+                    $randomColor = rand(0, count($colors) - 1);
                     $randomCount  = rand(1, 5);
                 ?>
                 <tr>
