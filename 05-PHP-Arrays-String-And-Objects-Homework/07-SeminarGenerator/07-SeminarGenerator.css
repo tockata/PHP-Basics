@@ -1,0 +1,69 @@
+a {
+    color: black;
+}
+
+a:hover {
+    color: red;
+}
+
+.hiddenDiv {
+    display: none;
+    position: absolute;
+    left: 200px;
+    width: 300px;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid black;
+    color: gray;
+}
+
+.hiddenDiv p {
+    margin: 0 0 5px 0;
+}
+
+.hiddenDiv span {
+    color: #5A5A5A;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+table, tr, td, th {
+    border: 1px solid #000000;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #6495ED;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+td, th {
+    padding: 10px;
+}
+
+tr td:last-of-type {
+    text-align: center;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #DCDCDC;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ADD8E6;
+}
+
+button {
+    background-color: #FF9C00;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    border: 1px solid #234465;
+    padding: 5px;
+}
+
+button:hover {
+    background-color: #234465;
+    border-color: #FF9C00;
+}
